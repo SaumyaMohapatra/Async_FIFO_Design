@@ -1,4 +1,4 @@
-# General Purpose Pipelined RISC-V Processor (8-bit)
+# Asynchronous FIFO Design
 
 ## Table of Contents
 1. [Author](#authors)
