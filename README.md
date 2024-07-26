@@ -19,6 +19,7 @@ This repo contains verilog code for an asynchronous FIFO.
 
 - FIFO stands for "First-In, First-Out." It is a type of data structure or buffer in which the first data element added (the "first in") is the first one to be removed (the "first out"). This structure is commonly used in scenarios where order of operations is important.
 - Async FIFO, or Asynchronous FIFO, is a FIFO buffer where the read and write operations are controlled by independent clock domains. This means that the writing process and the reading process are driven by different clocks, which are not synchronized. Async FIFOs are used to safely transfer data between these asynchronous clock domains.
+- <img src=".\Assets\FIFO_in_system.png" alt="Alt Text" width="500">
 - Async FIFOs are used in various applications where data needs to be transferred between two parts of a system that operate on different clock frequencies. Some common use cases include:
 
     - Interfacing between different clock domains: For example, transferring data between a high-speed processing unit and a slower peripheral.
