@@ -29,7 +29,17 @@ This repo contains verilog code for an asynchronous FIFO.
 
 ## Design Space Exploration and Design Strategies
 
+The block diagram of async. FIFO that is implemented in this repo is given below. 
 
+<img src=".\Assets\Async_FIFO.png" alt="Alt Text" width="700">
+
+For implementing this FIFO, I have divided the design into ___ modules:-
+
+1. **``FIFO.v``**: The top-level wrapper module includes all clock domains and is used to instantiate all other FIFO modules. In a larger ASIC or FPGA design, this wrapper would likely be discarded to group the FIFO modules by clock domain for better synthesis and static timing analysis.
+2. **``FIFO_memory.v``**: This modules contains the buffer or the moeory of the FIFO, which has both the clocks. This is a dual port RAM.
+3. **``Two_ff_sync.v``**: This module consist of two flip-flops that are connected to each other to form a 2 flip-flop synchronizer. This module will have two instances, one for write to read clock pointer synchronization and other for read to write clock pointer synchronization
+4. ***``rptr_empty.v``**: This modlue consist of the logic for the Read pointer handler. It is completely synchronized by read clock and consist of the logic for generation of FIFO empty signal.
+5. ***``wptr_empty.v``**: This modlue consist of the logic for the Write pointer handler. It is completely synchronized by write clock and consist of the logic for generation of FIFO full signal.
 
 ## Testbench Case Implementation
 
