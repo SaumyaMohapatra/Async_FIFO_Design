@@ -72,6 +72,10 @@ For implementing this FIFO, I have divided the design into 5 modules:-
 #### FIFO_memory.v
 #### two_ff_sync.v
 
+The RTL schematics of this module is given below. [./Verilog_code/two_ff_sync.v](/Verilog_Code/two_ff_sync.v) is the code of this module. The module has two flip-flops, ``q1`` and ``q2``, which store the input data (``din``) of size ``SIZE``. On each clock cycle, the data is shifted from ``q1`` to ``q2``, and new data is loaded into ``q1``. The reset signal (``rst_n``) is active low, meaning the FIFO is reset when ``rst_n`` is low. 
+
+<img src=".\Assets\2_ff_sync_RTL.png" alt="Alt Text" width="500">
+
 #### rptr_emprt.v
 #### wptr_emprt.v
 
