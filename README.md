@@ -69,9 +69,15 @@ For implementing this FIFO, I have divided the design into 5 modules:-
 5. **``wptr_empty.v``**: This modlue consist of the logic for the Write pointer handler. It is completely synchronized by write clock and consist of the logic for generation of FIFO full signal.
 
 #### FIFO.v
+
+[./Verilog_code/FIFO.v](/Verilog_Code/FIFO.v) is the code of this module. This module is a FIFO implementation with configurable data and address sizes. It consists of a memory module, read and write pointer handling modules, and read and write pointer synchronization modules. The read and write pointers are synchronized to the respective clock domains, and the read and write pointers are checked for empty and full conditions, respectively. The FIFO memory module stores the data and handles the read and write operations.The RTL schematics of this module is given below. 
+
+<img src=".\Assets\FIFO_RTL.png" alt="Alt Text" width="900">
+
+
 #### FIFO_memory.v
 
-[./Verilog_code/FIFO_memory.v](/Verilog_Code/FIFO_memory.v) is the code of this module.. The module has a memory array (``mem``) with a depth of ``2^ADDR_SIZE``. The read and write addresses are used to access the memory array. The write clock enable (``wclk_en``) and write full (``wfull``) signals are used to control the writing process. The write data is stored in the memory array on the rising edge of the write clock (``wclk``). The RTL schematics of this module is given below. 
+[./Verilog_code/FIFO_memory.v](/Verilog_Code/FIFO_memory.v) is the code of this module. The module has a memory array (``mem``) with a depth of ``2^ADDR_SIZE``. The read and write addresses are used to access the memory array. The write clock enable (``wclk_en``) and write full (``wfull``) signals are used to control the writing process. The write data is stored in the memory array on the rising edge of the write clock (``wclk``). The RTL schematics of this module is given below. 
 
 <img src=".\Assets\FIFO_memory_RTL.png" alt="Alt Text" width="600">
 
