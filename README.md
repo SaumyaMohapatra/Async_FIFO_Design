@@ -85,7 +85,7 @@ For implementing this FIFO, I have divided the design into 5 modules:-
 
 [./Verilog_code/rprt_empty.v](/Verilog_Code/rprt_empty.v) is the code of this module. The module implements a read pointer for a FIFO with an empty flag. The read pointer is implemented in grey code to avoid glitches when transitioning clock domains. The read pointer is incremented based on the read increment signal and the empty flag. The empty flag is set when the read pointer is equal to the write pointer, indicating that the FIFO is empty. The read pointer and empty flag are updated on each clock cycle, and the read address is calculated from the read pointer. The RTL schematics of this module is given below. 
 
-<img src=".\Assets\rptr_empty_RTL" alt="Alt Text" width="700">
+<img src=".\Assets\rptr_empty_RTL.png" alt="Alt Text" width="700">
 
 #### wptr_full.v
 
