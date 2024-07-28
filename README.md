@@ -71,18 +71,23 @@ For implementing this FIFO, I have divided the design into 5 modules:-
 #### FIFO.v
 #### FIFO_memory.v
 
-The RTL schematics of this module is given below. [./Verilog_code/FIFO_memory.v](/Verilog_Code/FIFO_memory.v). The module has a memory array (``mem``) with a depth of ``2^ADDR_SIZE``. The read and write addresses are used to access the memory array. The write clock enable (``wclk_en``) and write full (``wfull``) signals are used to control the writing process. The write data is stored in the memory array on the rising edge of the write clock (``wclk``).
+[./Verilog_code/FIFO_memory.v](/Verilog_Code/FIFO_memory.v) is the code of this module.. The module has a memory array (``mem``) with a depth of ``2^ADDR_SIZE``. The read and write addresses are used to access the memory array. The write clock enable (``wclk_en``) and write full (``wfull``) signals are used to control the writing process. The write data is stored in the memory array on the rising edge of the write clock (``wclk``). The RTL schematics of this module is given below. 
 
-<img src=".\Assets\FIFO_memory_RTL.png" alt="Alt Text" width="500">
+<img src=".\Assets\FIFO_memory_RTL.png" alt="Alt Text" width="600">
 
 #### two_ff_sync.v
 
-The RTL schematics of this module is given below. [./Verilog_code/two_ff_sync.v](/Verilog_Code/two_ff_sync.v) is the code of this module. The module has two flip-flops, ``q1`` and ``q2``, which store the input data (``din``) of size ``SIZE``. On each clock cycle, the data is shifted from ``q1`` to ``q2``, and new data is loaded into ``q1``. The reset signal (``rst_n``) is active low, meaning the FIFO is reset when ``rst_n`` is low. 
+[./Verilog_code/two_ff_sync.v](/Verilog_Code/two_ff_sync.v) is the code of this module. The module has two flip-flops, ``q1`` and ``q2``, which store the input data (``din``) of size ``SIZE``. On each clock cycle, the data is shifted from ``q1`` to ``q2``, and new data is loaded into ``q1``. The reset signal (``rst_n``) is active low, meaning the FIFO is reset when ``rst_n`` is low. The RTL schematics of this module is given below. 
 
 <img src=".\Assets\2_ff_sync_RTL.png" alt="Alt Text" width="500">
 
-#### rptr_emprt.v
-#### wptr_emprt.v
+#### rptr_empty.v
+
+[./Verilog_code/rprt_empty.v](/Verilog_Code/rprt_empty.v) is the code of this module. The module implements a read pointer for a FIFO with an empty flag. The read pointer is implemented in grey code to avoid glitches when transitioning clock domains. The read pointer is incremented based on the read increment signal and the empty flag. The empty flag is set when the read pointer is equal to the write pointer, indicating that the FIFO is empty. The read pointer and empty flag are updated on each clock cycle, and the read address is calculated from the read pointer. The RTL schematics of this module is given below. 
+
+<img src=".\Assets\rptr_empty_RTL" alt="Alt Text" width="700">
+
+#### wptr_full.v
 
 ## Testbench Case Implementation
 
