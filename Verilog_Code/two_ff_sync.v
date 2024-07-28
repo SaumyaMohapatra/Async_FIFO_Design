@@ -23,7 +23,7 @@ module two_ff_sync #(parameter SIZE = 4)(
 
 endmodule
 
-// --------------------EXPLANATION WITH THE SIGNALS------------------------
+// ---------------------------EXPLANATION---------------------------------
 // The module has two flip-flops, q1 and q2, which store the input data. 
 // On each clock cycle, the data is shifted from q1 to q2, and new data 
 // is loaded into q1. The reset signal (rst_n) is active low, meaning the 

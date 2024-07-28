@@ -70,6 +70,11 @@ For implementing this FIFO, I have divided the design into 5 modules:-
 
 #### FIFO.v
 #### FIFO_memory.v
+
+The RTL schematics of this module is given below. [./Verilog_code/FIFO_memory.v](/Verilog_Code/FIFO_memory.v). The module has a memory array (``mem``) with a depth of ``2^ADDR_SIZE``. The read and write addresses are used to access the memory array. The write clock enable (``wclk_en``) and write full (``wfull``) signals are used to control the writing process. The write data is stored in the memory array on the rising edge of the write clock (``wclk``).
+
+<img src=".\Assets\FIFO_memory_RTL.png" alt="Alt Text" width="500">
+
 #### two_ff_sync.v
 
 The RTL schematics of this module is given below. [./Verilog_code/two_ff_sync.v](/Verilog_Code/two_ff_sync.v) is the code of this module. The module has two flip-flops, ``q1`` and ``q2``, which store the input data (``din``) of size ``SIZE``. On each clock cycle, the data is shifted from ``q1`` to ``q2``, and new data is loaded into ``q1``. The reset signal (``rst_n``) is active low, meaning the FIFO is reset when ``rst_n`` is low. 
