@@ -6,6 +6,17 @@ This repo contains verilog code for an asynchronous FIFO.
 1. [Author](#authors)
 2. [Introduction](#introduction)
 3. [Design Space Exploration and Design Strategies](#design-space-exploration-and-design-strategies)
+    1. [Read and Write Operations](#read-and-write-operations)
+        1. [Operations](#operations)
+        2. [Full, empty and wrapping condition](#full-empty-and-wrapping-condition)
+        3. [Gray Code Counter](#gray-code-counter)
+    2. [Signals Defination](#signals-defination)
+    3. [Dividing System Into Modules](#dividing-system-into-modules)
+        1. [FIFO.v](#fifov)
+        2. [FIFO_memory.v](#fifo_memoryv)
+        3. [two_ff_sync.v](#two_ff_syncv)
+        4. [rptr_empty](#rptr_emptyv)
+        5. [wptr_full.v](#wptr_fullv)
 4. [Testbench Case Implementation](#testbench-case-implementation)
 5. [Implementation Challenges](#implementation-challenges)
 6. [Results](#results)
@@ -35,7 +46,7 @@ The block diagram of async. FIFO that is implemented in this repo is given below
 
 ### Read and Write Operations
 
-#### Operation
+#### Operations
 In an asynchronous FIFO, the read and write operations are managed by separate clock domains. The write pointer always points to the next word to be written. On a FIFO-write operation, the memory location pointed to by the write pointer is written, and then the write pointer is incremented to point to the next location to be written. Similarly, the read pointer always points to the current FIFO word to be read. On reset, both pointers are set to zero. When the first data word is written to the FIFO, the write pointer increments, the empty flag is cleared, and the read pointer, which is still addressing the contents of the first FIFO memory word, immediately drives that first valid word onto the FIFO data output port to be read by the receiver logic. The FIFO is empty when the read and write pointers are both equal, and it is full when the write pointer has wrapped around and caught up to the read pointer.
 
 #### Full, empty and wrapping condition
@@ -55,7 +66,7 @@ This design technique helps in accurately determining the full and empty conditi
 
 Gray code counters are used in FIFO design because they only allow one bit to change for each clock transition. This characteristic eliminates the problem associated with trying to synchronize multiple changing signals on the same clock edge, which is crucial for reliable operation in asynchronous systems.
 
-### Signals defination
+### Signals Defination
 
 Following is the list of signals used in the design with their defination:-
 
@@ -77,7 +88,7 @@ Following is the list of signals used in the design with their defination:-
 16. **``w_rptr``**: Read pointer signal synchronized to the ``wclk`` domain via 2 flip-flop synchronized.  
 17. **``r_wptr``**: Write pointer signal synchronized to the ``rclk`` domain via 2 flip-flop synchronized. 
 
-### Dividing system into modules
+### Dividing System Into Modules
 For implementing this FIFO, I have divided the design into 5 modules:-
 
 1. **``FIFO.v``**: The top-level wrapper module includes all clock domains and is used to instantiate all other FIFO modules. In a larger ASIC or FPGA design, this wrapper would likely be discarded to group the FIFO modules by clock domain for better synthesis and static timing analysis.
