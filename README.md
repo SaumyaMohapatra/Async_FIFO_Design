@@ -3,7 +3,7 @@
 This repo contains verilog code for an asynchronous FIFO.
 
 ## Table of Contents
-1. [Author](#authors)
+1. [Author](#author)
 2. [Introduction](#introduction)
 3. [Design Space Exploration and Design Strategies](#design-space-exploration-and-design-strategies)
     1. [Read and Write Operations](#read-and-write-operations)
@@ -18,6 +18,7 @@ This repo contains verilog code for an asynchronous FIFO.
         4. [rptr_empty](#rptr_emptyv)
         5. [wptr_full.v](#wptr_fullv)
 4. [Testbench Case Implementation](#testbench-case-implementation)
+    1. [Waveforms](#waveforms)
 5. [Implementation Challenges](#implementation-challenges)
 6. [Results](#results)
 7. [Conclusion](#conclusion)
@@ -146,8 +147,21 @@ The testbench uses clock signals for writing and reading, and includes reset sig
 
 ## Results
 
+The asynchronous FIFO design was tested using a testbench. The following key results were observed:-
+
+1. **Correct Data Storage and Retrieval**: The FIFO correctly stored data when written to and retrieved the exact same data when read from. This was validated across multiple test cases with varying data patterns.
+2. **Full and Empty Conditions**: The FIFO accurately indicated full and empty conditions. When the FIFO was full, additional write operations were correctly prevented, and when the FIFO was empty, additional read operations were correctly halted.
+
 ## Conclusion
+
+## Conclusion
+
+The design and implementation of the asynchronous FIFO were successful, demonstrating reliable data storage and retrieval between asynchronous clock domains. The use of gray code counters ensured proper synchronization, and the module's behavior in full and empty conditions was as expected. The testbench validated the FIFO's functionality across different scenarios, proving the design's correctness and efficiency.
+
+While simulations confirmed the functional aspects of the design, it is important to note that metastability issues cannot be fully tested through simulations alone. Metastability is a physical phenomenon that occurs in actual hardware, and its mitigation relies on proper design techniques like the use of synchronizers and careful consideration of setup and hold times.
+
+Overall, the asynchronous FIFO design is well-suited for applications requiring data transfer between different clock domains, ensuring data integrity and synchronization. Future work could involve implementing the design on actual hardware to observe real-world behavior and further testing under varied clock frequencies and data patterns to ensure robust performance.
 
 ## References
 1. [Sunburst Design: Simulation and Synthesis Techniques for Asynchronous FIFO Design](http://www.sunburst-design.com/papers/CummingsSNUG2002SJ_FIFO1.pdf)
-2. [VLSI verify Blog - Asynchronous FIFO]()
+2. [VLSI verify Blog - Asynchronous FIFO](https://vlsiverify.com/verilog/verilog-codes/asynchronous-fifo/)
