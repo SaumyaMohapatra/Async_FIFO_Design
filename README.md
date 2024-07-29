@@ -101,6 +101,18 @@ For implementing this FIFO, I have divided the design into 5 modules:-
 
 ## Testbench Case Implementation
 
+The testbench for the FIFO module generates random data and writes it to the FIFO, then reads it back and compares the results. The testbench includes three test cases:
+1. Write data and read it back.
+2. Write data to make the FIFO full and try to write more data.
+3. Read data from an empty FIFO and try to read more data. 
+The testbench uses clock signals for writing and reading, and includes reset signals to initialize the FIFO. The testbench finishes after running the test cases.
+
+### Waveforms
+
+<img src=".\Assets\tb_1.png" alt="Alt Text" width="700">
+<img src=".\Assets\tb_2.png" alt="Alt Text" width="700">
+<img src=".\Assets\tb_3.png" alt="Alt Text" width="700">
+
 ## Results
 
 ## Conclusion
